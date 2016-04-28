@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayLabel: UILabel!
     
     var displayValue: String?
+    var operation: String?
+    
+    var operand: Double?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,23 +35,158 @@ class ViewController: UIViewController {
     // Operation IBActions
     
     @IBAction func multiplicationTapped(sender: UIButton) {
+        var doubleValueFromDisplayValue: Double?
+        
+        if let currentValue = displayValue, doubleFromCurrentValue = Double(currentValue) {
+            doubleValueFromDisplayValue = doubleFromCurrentValue
+        }
+        if doubleValueFromDisplayValue == nil {
+            print("Reset the number because we could not convert the current value into a Double")
+            displayValue = nil
+            displayLabel.text = "0"
+        } else if operand == nil {
+            operand = doubleValueFromDisplayValue
+            operation = "*"
+            displayValue = nil
+        } else if operand != nil && displayValue != nil{
+            if operation == "+" {
+                print("")
+                operand = operand! + doubleValueFromDisplayValue!
+            }
+            else if operation == "-" {
+                operand = operand! - doubleValueFromDisplayValue!
+            }
+            else if operation == "*" {
+                operand = operand! * doubleValueFromDisplayValue!
+            }
+            else if operation == "/" {
+                operand = operand! / doubleValueFromDisplayValue!
+            }
+            operation = "*"
+            displayValue = nil
+            displayLabel.text = "\(operand!)"
+        }
     
     }
     
     @IBAction func divideTapped(sender: UIButton) {
-    
+        var doubleValueFromDisplayValue: Double?
+        
+        if let currentValue = displayValue, doubleFromCurrentValue = Double(currentValue) {
+            doubleValueFromDisplayValue = doubleFromCurrentValue
+        }
+        if doubleValueFromDisplayValue == nil {
+            displayValue = nil
+            displayLabel.text = "0"
+        } else if operand == nil {
+            operand = doubleValueFromDisplayValue
+            operation = "/"
+            displayValue = nil
+        } else if operand != nil && displayValue != nil {
+            if operation == "+" {
+                operand = operand! + doubleValueFromDisplayValue!
+            } else if operation == "-" {
+                operand = operand! - doubleValueFromDisplayValue!
+            }
+            else if operation == "*" {
+                operand = operand! * doubleValueFromDisplayValue!
+            }
+            else if operation == "/" {
+                operand = operand! / doubleValueFromDisplayValue!
+            }
+            operation = "/"
+            displayValue = nil
+            displayLabel.text = "\(operand!)"
+        }
     }
     
     @IBAction func subtractTapped(sender: UIButton) {
+        var doubleValueFromDisplayValue: Double?
+        
+        if let currentValue = displayValue, doubleFromCurrentValue = Double(currentValue) {
+            doubleValueFromDisplayValue = doubleFromCurrentValue
+        }
+        if doubleValueFromDisplayValue == nil {
+            displayValue = nil
+            displayLabel.text = "0"
+        } else if operand == nil {
+            operand = doubleValueFromDisplayValue
+            operation = "-"
+            displayValue = nil
+        } else if operand != nil && displayValue != nil {
+            if operation == "+" {
+                operand = operand! + doubleValueFromDisplayValue!
+            } else if operation == "-" {
+                operand = operand! - doubleValueFromDisplayValue!
+            }
+            else if operation == "*" {
+                operand = operand! * doubleValueFromDisplayValue!
+            }
+            else if operation == "/" {
+                operand = operand! / doubleValueFromDisplayValue!
+            }
+            operation = "-"
+            displayValue = nil
+            displayLabel.text = "\(operand!)"
+        }
         
     }
     
     @IBAction func plusTapped(sender: UIButton) {
+        var doubleValueFromDisplayValue: Double?
         
+        if let currentValue = displayValue, doubleFromCurrentValue = Double(currentValue) {
+            doubleValueFromDisplayValue = doubleFromCurrentValue
+        }
+        if doubleValueFromDisplayValue == nil {
+            displayValue = nil
+            displayLabel.text = "0"
+        } else if operand == nil {
+            operand = doubleValueFromDisplayValue
+            operation = "+"
+            displayValue = nil
+        } else if operand != nil && displayValue != nil {
+            if operation == "+" {
+                operand = operand! + doubleValueFromDisplayValue!
+            } else if operation == "-" {
+                operand = operand! - doubleValueFromDisplayValue!
+            }
+            else if operation == "*" {
+                operand = operand! * doubleValueFromDisplayValue!
+            }
+            else if operation == "/" {
+                operand = operand! / doubleValueFromDisplayValue!
+            }
+            operation = "+"
+            displayValue = nil
+            displayLabel.text = "\(operand!)"
+        }
     }
     
     @IBAction func equalsTapped(sender: UIButton) {
-        
+        if let currentValue = displayValue {
+            if let doubleFromCurrentValue = Double(currentValue) {
+                
+                if operation == "+" {
+                    print("")
+                    operand = operand! + doubleFromCurrentValue
+                }
+                else if operation == "-" {
+                    print("Subtraction")
+                    operand = operand! - doubleFromCurrentValue
+                }
+                else if operation == "*" {
+                    operand = operand! * doubleFromCurrentValue
+                }
+                else if operation == "/" {
+                    operand = operand! / doubleFromCurrentValue
+                }
+                
+                displayLabel.text = "\(operand!)"
+                operation = nil
+                
+            }
+        }
     }
     
     @IBAction func plusMinusTapped(sender: UIButton) {
