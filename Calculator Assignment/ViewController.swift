@@ -191,9 +191,26 @@ class ViewController: UIViewController {
     
     @IBAction func plusMinusTapped(sender: UIButton) {
         
+        if let currentValue = displayValue, doubleFromCurrentValue = Double(currentValue) {
+            displayValue = "\(-1.0 * doubleFromCurrentValue)"
+            displayLabel.text = "\(displayValue!)"
+        }
+        else {
+            displayValue = nil
+            displayLabel.text = "0"
+        }
+        
     }
     
     @IBAction func backspaceTapped(sender: UIButton) {
+        
+        if let currentValue = displayValue {
+            displayValue = currentValue.substringToIndex(currentValue.endIndex.advancedBy(-1))
+            if displayValue == "" {
+                displayValue = "0"
+            }
+            displayLabel.text = displayValue
+        }
         
     }
     
@@ -206,6 +223,7 @@ class ViewController: UIViewController {
             displayValue = currentValue + "."
         } else {
             displayValue = "."
+            
         }
         displayLabel.text = displayValue!
     }
@@ -217,6 +235,7 @@ class ViewController: UIViewController {
             displayValue = "0"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func oneTapped(sender: UIButton) {
@@ -226,6 +245,7 @@ class ViewController: UIViewController {
             displayValue = "1"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func twoTapped(sender: UIButton) {
@@ -235,6 +255,7 @@ class ViewController: UIViewController {
             displayValue = "2"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func threeTapped(sender: UIButton) {
@@ -244,6 +265,7 @@ class ViewController: UIViewController {
             displayValue = "3"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func fourTapped(sender: UIButton) {
@@ -253,6 +275,7 @@ class ViewController: UIViewController {
             displayValue = "4"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func fiveTapped(sender: UIButton) {
@@ -262,6 +285,7 @@ class ViewController: UIViewController {
             displayValue = "5"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func sixTapped(sender: UIButton) {
@@ -271,6 +295,7 @@ class ViewController: UIViewController {
             displayValue = "6"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func sevenTapped(sender: UIButton) {
@@ -280,6 +305,7 @@ class ViewController: UIViewController {
             displayValue = "7"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func eightTapped(sender: UIButton) {
@@ -289,6 +315,7 @@ class ViewController: UIViewController {
             displayValue = "8"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
     @IBAction func nineTapped(sender: UIButton) {
@@ -298,41 +325,9 @@ class ViewController: UIViewController {
             displayValue = "9"
         }
         displayLabel.text = displayValue!
+        displayLabel.text = Int(displayValue!)?.description
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 
 }
 
