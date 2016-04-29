@@ -214,17 +214,18 @@ class ViewController: UIViewController {
         
     }
     
-
     
     // Symbol IBActions
     
     @IBAction func decimalTapped(sender: UIButton) {
+
         if let currentValue = displayValue {
             displayValue = currentValue + "."
-        } else {
-            displayValue = "."
-            
         }
+        else {
+            displayValue = "."
+        }
+        
         displayLabel.text = displayValue!
     }
     
